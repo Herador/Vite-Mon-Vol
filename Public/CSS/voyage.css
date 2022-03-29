@@ -66,3 +66,15 @@ ul {
   .logo{
       font-size: 35px;
   }
+
+  /* circuit */
+
+  .circuit{
+    margin-bottom: 25px;
+  }
+
+  .text-center{
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+  

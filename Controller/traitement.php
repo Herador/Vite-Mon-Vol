@@ -8,7 +8,7 @@ function infoVoyage($id)
     $voyage = [];
     $jour = [];
 
-    $requestVoyage = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`,`circuit_deplacement`.`id_deplacement`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`,`deplacement`.`id_ville_depart`,`deplacement`.`id_ville_arrivee`, `ville`.`nom`
+    $requestVoyage = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`,`deplacement`.`nombre_etape`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`,`deplacement`.`id_ville_depart`,`deplacement`.`id_ville_arrivee`, `ville`.`nom`
                     FROM `circuit`, `circuit_deplacement`, `deplacement`, `ville` 
                     WHERE `deplacement`.`id_ville_depart` = `ville`.`id`
                     AND `deplacement`.`id` = `circuit_deplacement`.`id_deplacement`
@@ -17,20 +17,20 @@ function infoVoyage($id)
     $resultVoyage = $connexion->prepare($requestVoyage);
     $resultVoyage->bind_param("i", $id);
     $resultVoyage->execute();
-    $resultVoyage->bind_result($nom, $planning_jour, $id_deplacement, $heure_depart, $heure_arrivee, $id_ville_depart, $id_ville_arrivee, $villedepart);
+    $resultVoyage->bind_result($nom, $planning_jour, $nombre_etape ,$heure_depart, $heure_arrivee, $id_ville_depart, $id_ville_arrivee, $villedepart);
 
     if (!$resultVoyage) {
         return null;
     } else {
         while ($resultVoyage->fetch()) {
             $voyage['nom'] = $nom;
-            $jour['idjour'] = $id_deplacement;
+            $jour['idjour'] = $nombre_etape;
             $jour['planing'] = $planning_jour;
             $jour['depart'] = $heure_depart;
             $jour['arrivee'] = $heure_arrivee;
             $jour['villedepart'] = $villedepart;
             $jour['idvillearrivee'] = $id_ville_arrivee;
-            $voyage['jour'.$id_deplacement] = $jour;
+            $voyage['jour'.$nombre_etape] = $jour;
         }
         return $voyage;
     }

@@ -2,9 +2,9 @@
 require_once('../controller/connexion_bdd.php');
 require_once('../controller/traitement.php');
 
-// $idRecette = $_GET['id'];
-$tabvoyage = infovoyage(1);
-$tabville = infoville(1);
+$idcircuit = $_GET['id'];
+$tabvoyage = infovoyage($idcircuit);
+$tabville = infoville($idcircuit);
 ?>
 
 <!DOCTYPE html>
@@ -50,18 +50,21 @@ $tabville = infoville(1);
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                    for
-                    <div class="carousel-item active">
-                        <img src="../Public/Image/carouseljapon<?=$I?>.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    endfor
+                <div class="carousel-item active">
+                            <img src="../Public/Image/carousel<?= $tabvoyage['jour' . "1"]['villedepart']?>1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    <?php for ($I = 2; $I < 4; $I++) : ?>
+                        <div class="carousel-item">
+                            <img src="../Public/Image/carousel<?= $tabvoyage['jour' . "1"]['villedepart']?><?= $I?>.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    <?php endfor ?>
                 </div>
             </div>
         </div>
         <div class="col-md-6 p-4 ps-md-0">
-            <h5 class="mt-0">Columns with stretched link</h5>
-            <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-            <a href="#" class="stretched-link">Go somewhere</a>
+            <h5 class="mt-0">REVERVATION ET TARIF </h5>
+            <p></p>
+            <a href="#" class="btn btn-warning" role="button">Reserver dés maintenant</a>
         </div>
     </div>
     <div class="container">
@@ -70,16 +73,19 @@ $tabville = infoville(1);
             <img class="img-fluid" src="..\public\images\<?= file_exists("..\public\images\\" . $tabInfo['nom'] . ".jpg") ?  $tabInfo['nom'] : "Pas_image"  ?>.jpg" class="card-img-top" alt="<?= $tabInfo['nom'] ?>">
         </div> -->
         <div class="row">
-            <div class="col-6">
-                <?php for ($J = 1; $J < count($tabvoyage); $J++) : ?>
-                    <?php $id_ville_arrivee = $tabvoyage['jour' . $J]['idvillearrivee'] ?>
-                    jour <?= $tabvoyage['jour'.$J]['idjour'] ?> : <?= $tabvoyage['jour'.$J]['villedepart'] ?> > <?= $tabville['villearrivee'.$id_ville_arrivee] ?> <br>
-                    de <?= $tabvoyage['jour'.$J]['depart'] ?> a <?= $tabvoyage['jour'.$J]['arrivee'] ?><br>
-                    <?= $tabvoyage['jour'.$J]['planing'] ?><br>
-                    hotel : <?= $tabville['hotel' . $id_ville_arrivee] ?> <br>
-                <?php endfor; ?>
-            </div>
+        <ul class="list-group list-group-flush-padding-y:$spacer * .5">
+            <?php for ($J = 1; $J < count($tabvoyage); $J++) : ?>
+                <div class="circuit">
+                <?php $id_ville_arrivee = $tabvoyage['jour'.$J]['idvillearrivee'] ?>
+                <li class="list-group-item"><h3>jour <?= $tabvoyage['jour'.$J]['idjour'] ?> : <?= $tabvoyage['jour'.$J]['villedepart'] ?> > <?= $tabville['villearrivee'.$id_ville_arrivee] ?></h3>
+                <h5>de <?= $tabvoyage['jour'.$J]['depart'] ?> a <?= $tabvoyage['jour'.$J]['arrivee'] ?></h5></li>
+                <li class="list-group-item"><h5><?= $tabvoyage['jour'.$J]['planing'] ?></h5></li>
+                <li class="list-group-item"><h5> hotel : <?= $tabville['hotel' . $id_ville_arrivee] ?></h5></li>
+                </div>
+            <?php endfor; ?>
+        </ul>
         </div>
     </div>
 </body>
+
 </html>
