@@ -1,12 +1,131 @@
-img{
-    height: 930px;
+.image{
+    height: 900px;
 }
 
 h1{
-    margin-bottom: 215px;
-    color: yellow;
+    margin-bottom: 155px;
+    color: rgb(248, 182, 39);
+    font-weight: bold;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 5.0rem;
 }
 
-h5{
-    margin-bottom: 150px;
+h4{
+    margin-bottom: 125px;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
 }
+
+/* bouton */
+
+.container {
+    top: 10%;
+
+  }
+  .button {
+    border: none;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: #eeeeee;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #153f00;
+    padding: 15px 50px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+  .button span {
+    position: relative;
+    z-index: 1;
+  }
+  .button:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 470%;
+    width: 140%;
+    background: #52b71f;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateX(-100%) translateY(-25%) rotate(45deg);
+    transform: translateX(-100%) translateY(-25%) rotate(45deg);
+  }
+  .button:hover:after {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  }
+
+  a{
+    outline: none;
+    text-decoration: none;
+  }
+
+/* navbar */
+
+header{
+    background-color: lightskyblue;
+}
+.vitemonvol{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    float: left;
+    padding-top: 2rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 0%;
+}
+.petit{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size : 23px;    
+    font-style: oblique;
+    font-weight: 600;                                     
+    padding-left: 40.5%;
+    margin: 0%;
+}
+ul {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 0%;
+  }
+  
+  li {
+    display: inline;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+  }
+
+.lien{
+    outline: none;
+    text-decoration: none;
+    display: inline-block;
+    width: 19.5%;
+    margin-right: 0%;
+    text-align: center;
+    line-height: 3;
+    color: black;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  #retour{
+    outline: none;
+    text-decoration: none;
+    color: black;
+}
+.lien:hover{
+      background-color: darkblue;
+      color : white
+  }
+
+  li:last-child a {
+    margin-right: 0;
+  }
+
+  .logo{
+      font-size: 35px;
+  }

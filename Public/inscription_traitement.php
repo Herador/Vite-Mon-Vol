@@ -11,7 +11,7 @@
         $prenom = htmlspecialchars($_POST['prenom']);
 
         
-        $check = $bdd->prepare('SELECT nom, email, password FROM utilisateurs WHERE email = ?');
+        $check = $bdd->prepare('SELECT nom, email, password FROM utilisateur WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -29,13 +29,12 @@
                             
                         
                              
-                            $insert = $bdd->prepare('INSERT INTO utilisateurs(id, nom, prenom, mail, mdp) VALUES(:id, :nom, :prenom, :mail, :password)');
+                            $insert = $bdd->prepare('INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES(:nom, :prenom, :mail, :password)');
                             $insert->execute(array(
                                 'nom' => $nom,
                                 'mail' => $email,
                                 'mdp' => $password,
                                 'prenom' => $prenom,
-                                'id' => bin2hex(openssl_random_pseudo_bytes(64))
                             ));
                             
                             header('Location:inscription.php?reg_err=success');
