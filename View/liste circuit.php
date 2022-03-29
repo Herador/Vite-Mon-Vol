@@ -24,6 +24,32 @@ $test3 = $connexion -> query ($grece) ;
    $description3 = $row['description'];
  }
 
+//------------------------------------------------------------------------------------------- //
+
+ $tokyonom= sprintf("SELECT `nom` FROM circuit WHERE id=1");
+$test = $connexion -> query ($tokyonom) ;
+
+ while ($row = $test->fetch_array(MYSQLI_ASSOC)) {
+   $nom = $row['nom'];
+ }
+
+
+ $canadanom= sprintf("SELECT `nom` FROM circuit WHERE id=3");
+$test2 = $connexion -> query ($canadanom) ;
+
+ while ($row = $test2->fetch_array(MYSQLI_ASSOC)) {
+   $nom2 = $row['nom'];
+ }
+
+
+ $grecenom= sprintf("SELECT `nom` FROM circuit WHERE id=2");
+$test3 = $connexion -> query ($grecenom) ;
+
+ while ($row = $test3->fetch_array(MYSQLI_ASSOC)) {
+   $nom3 = $row['nom'];
+ }
+
+
     
 ?>
 
@@ -44,24 +70,27 @@ $test3 = $connexion -> query ($grece) ;
   <div class="card">
     <img src="..\Public\Image\777.jpg" class="card-img-top" alt="...">
     <div class="card-body">
+    <h1 class="card-title"> <?php echo ($nom) ?></h1>
       <h5 class="card-title"> <?php echo ($description) ?></h5>
-      <button type="button" class="btn btn-primary">Primary</button>
+      <a class="btn btn-primary" href="..\Vite-Mon-Vol\View\tokyocard.php" role="button">En savoir plus</a>
       
     </div>
   </div>
   <div class="card">
     <img src="..\Public\Image\23625.jpg" class="card-img-top" alt="...">
     <div class="card-body">
+    <h1 class="card-title"> <?php echo ($nom2) ?></h1>
       <h5 class="card-title"><?php echo ($description2) ?></h5>
-      <button type="button" class="btn btn-primary">Primary</button>
+      <a class="btn btn-primary" href="..\Vite-Mon-Vol\View\canadacard.php" role="button">En savoir plus</a>
       
     </div>
   </div>
   <div class="card">
     <img src="..\Public\Image\42004.jpg" class="card-img-top" alt="...">
     <div class="card-body">
+    <h1 class="card-title"> <?php echo ($nom3) ?></h1>
       <h5 class="card-title"><?php echo ($description3) ?></h5>
-      <button type="button" class="btn btn-primary">Primary</button>
+      <a class="btn btn-primary" href="..\Vite-Mon-Vol\View\grececard.php" role="button">En savoir plus</a>
       
     </div>
   </div>
