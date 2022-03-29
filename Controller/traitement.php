@@ -7,12 +7,12 @@ function infoJapon($id)
     global $connexion;
     $info = [];
 
-    $requestEtape = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`, `ville`.`nom`, `ville`.`hotel` 
-                     FROM `circuit`, `circuit_deplacement`, `deplacement`, `ville` 
-                     WHERE `deplacement`.`id_ville_depart` = `ville`.`id` AND `deplacement`.`id_ville_arrivee`= `ville`.`id` 
-                     AND `deplacement.id` = `circuit_deplacement`.`id_deplacement` 
-                     AND `circuit_deplacement`.`id_deplacement` = `circuit_deplacement`.`id_circuit`
-                     AND `circuit`.`id` = ? ";
+    $requestEtape = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`,`circuit_deplacement`.`id_deplacement`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`, `ville`.`nom`, `ville`.`hotel`
+                    FROM `circuit`, `circuit_deplacement`, `deplacement`, `ville` 
+                    WHERE `deplacement`.`id_ville_depart` = `ville`.`id`
+                    AND `deplacement`.`id` = `circuit_deplacement`.`id_deplacement`
+                    AND circuit.id = circuit_deplacement.id_circuit
+                    AND `circuit_deplacement`.`id_circuit` = ? ";
     $resultEtape = $connexion->prepare($requestEtape);
     $resultEtape->bind_param("i", $id);
     $resultEtape->execute();
