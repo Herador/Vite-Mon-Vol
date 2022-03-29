@@ -1,5 +1,30 @@
 <?php
 require_once ("connexion_bdd.php");
+
+$tokyo= sprintf("SELECT `description` FROM circuit WHERE id=1");
+$test = $connexion -> query ($tokyo) ;
+
+ while ($row = $test->fetch_array(MYSQLI_ASSOC)) {
+   $description = $row['description'];
+ }
+
+
+ $canada= sprintf("SELECT `description` FROM circuit WHERE id=3");
+$test2 = $connexion -> query ($canada) ;
+
+ while ($row = $test2->fetch_array(MYSQLI_ASSOC)) {
+   $description2 = $row['description'];
+ }
+
+
+ $grece= sprintf("SELECT `description` FROM circuit WHERE id=2");
+$test3 = $connexion -> query ($grece) ;
+
+ while ($row = $test3->fetch_array(MYSQLI_ASSOC)) {
+   $description3 = $row['description'];
+ }
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +44,7 @@ require_once ("connexion_bdd.php");
   <div class="card">
     <img src="..\Public\Image\777.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"></h5>
+      <h5 class="card-title"> <?php echo ($description) ?></h5>
       <button type="button" class="btn btn-primary">Primary</button>
       
     </div>
@@ -27,7 +52,7 @@ require_once ("connexion_bdd.php");
   <div class="card">
     <img src="..\Public\Image\23625.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"></h5>
+      <h5 class="card-title"><?php echo ($description2) ?></h5>
       <button type="button" class="btn btn-primary">Primary</button>
       
     </div>
@@ -35,7 +60,7 @@ require_once ("connexion_bdd.php");
   <div class="card">
     <img src="..\Public\Image\42004.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"></h5>
+      <h5 class="card-title"><?php echo ($description3) ?></h5>
       <button type="button" class="btn btn-primary">Primary</button>
       
     </div>
