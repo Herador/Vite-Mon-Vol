@@ -2,53 +2,63 @@
 
 require_once('connexion_bdd.php');
 
-function infoJapon($id)
+function infoVoyage($id)
 {
     global $connexion;
-    $info = [];
+    $voyage = [];
+    $jour = [];
 
-    $requestEtape = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`,`circuit_deplacement`.`id_deplacement`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`, `ville`.`nom`, `ville`.`hotel`
+    $requestVoyage = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`,`circuit_deplacement`.`id_deplacement`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`,`deplacement`.`id_ville_depart`,`deplacement`.`id_ville_arrivee`, `ville`.`nom`
                     FROM `circuit`, `circuit_deplacement`, `deplacement`, `ville` 
                     WHERE `deplacement`.`id_ville_depart` = `ville`.`id`
                     AND `deplacement`.`id` = `circuit_deplacement`.`id_deplacement`
                     AND circuit.id = circuit_deplacement.id_circuit
                     AND `circuit_deplacement`.`id_circuit` = ? ";
-    $resultEtape = $connexion->prepare($requestEtape);
-    $resultEtape->bind_param("i", $id);
-    $resultEtape->execute();
-    $resultEtape->bind_result($nom, $difficulte);
+    $resultVoyage = $connexion->prepare($requestVoyage);
+    $resultVoyage->bind_param("i", $id);
+    $resultVoyage->execute();
+    $resultVoyage->bind_result($nom, $planning_jour, $id_deplacement, $heure_depart, $heure_arrivee, $id_ville_depart, $id_ville_arrivee, $villedepart);
 
-    if (!$resultEtape) {
+    if (!$resultVoyage) {
         return null;
     } else {
-        while ($resultEtape->fetch()) {
-            $info['nom'] = $nom;
-            $info['difficulte'] = $difficulte;
+        while ($resultVoyage->fetch()) {
+            $voyage['nom'] = $nom;
+            $jour['idjour'] = $id_deplacement;
+            $jour['planing'] = $planning_jour;
+            $jour['depart'] = $heure_depart;
+            $jour['arrivee'] = $heure_arrivee;
+            $jour['villedepart'] = $villedepart;
+            $jour['idvillearrivee'] = $id_ville_arrivee;
+            $voyage['jour'.$id_deplacement] = $jour;
         }
-        return $info;
+        return $voyage;
     }
 }
 
-function infoEtape($id)
+function infoville($id)
 {
     global $connexion;
-    $tab = [];
+    $ville = [];
 
-    $requestEtape = "SELECT `numero`, `description` 
-                     FROM `etape` 
-                     WHERE `idRecette` = ? ";
-    $resultEtape = $connexion->prepare($requestEtape);
-    $resultEtape->bind_param("i", $id);
-    $resultEtape->execute();
-    $resultEtape->bind_result($numero, $description);
+    $requestville = "SELECT deplacement.`id_ville_arrivee`, ville.nom, ville.hotel 
+                    FROM deplacement, ville, circuit_deplacement 
+                    WHERE id_ville_arrivee = ville.id 
+                    AND circuit_deplacement.id_deplacement = deplacement.id   
+                    AND circuit_deplacement.id_circuit = ? ";
+    $resultville = $connexion->prepare($requestville);
+    $resultville->bind_param("i", $id);
+    $resultville->execute();
+    $resultville->bind_result($id_ville_arrivee, $villearrivee, $hotel);
 
-    if (!$resultEtape) {
+    if (!$resultville) {
         return null;
     } else {
-        while ($resultEtape->fetch()) {
-            $tab[$numero] = $description;
+        while ($resultville->fetch()) {
+            $ville['villearrivee'.$id_ville_arrivee] = $villearrivee;
+            $ville['hotel'.$id_ville_arrivee] = $hotel;
         }
-        return $tab;
+        return $ville;
     }
 }
 

@@ -35,7 +35,7 @@
         <div class="carousel-caption d-none d-md-block">
             <h1>Japon</h1>
             <h4>Un pays à l'accueil chaleureux et à la gastronomie exquise avec des paysages somptueux et une architecture enchanteresse. </h4>
-            <a href="japon.php" role="button"><div class="container">
+            <a href="voyage.php" role="button"><div class="container">
         <button type="button" class="button">
             <span>Voyager!</span>
         </button>
@@ -47,7 +47,7 @@
         <div class="carousel-caption d-none d-md-block">
             <h1>Grèce</h1>
             <h4>La Grèce est sans aucun doute l’un des plus beaux pays du monde : ruines, histoire, superbes paysages, la mer, le ciel bleu, le soleil. </h4>
-            <a href="grece.php" role="button"><div class="container">
+            <a href="voyage.php" role="button"><div class="container">
         <button type="button" class="button">
             <span>Voyager!</span>
         </button>
@@ -59,7 +59,7 @@
         <div class="carousel-caption d-none d-md-block">
             <h1>Canada</h1>
             <h4>Grands espaces, nature omniprésente, faune exceptionnelle… Si vous voulez vous ressourcer dans les bras de Dame Nature, vous êtes au bon endroit.</h4>
-            <a href="canada.php" role="button"><div class="container">
+            <a href="voyage.php" role="button"><div class="container">
         <button type="button" class="button">
             <span>Voyager!</span>
         </button>
