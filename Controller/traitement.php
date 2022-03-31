@@ -62,26 +62,28 @@ function infoville($id)
     }
 }
 
-function infoIngredient($id)
+function infoReservation($id)
 {
     global $connexion;
-    $ingredients = [];
+    $info = [];
 
-    $request = "SELECT `quantite`, `ingredient`.`nom` 
-    FROM`recette_ingredient`
-    INNER JOIN `ingredient` on `recette_ingredient`.`idIngredient` = `ingredient`.`id` 
-    WHERE `recette_ingredient`.`idRecette` = ? ";
+    $request = "SELECT `nombre_place_total`,`date_debut`,`date_fin`,`prix` 
+                FROM `circuit` 
+                WHERE id = ? ";
     $result = $connexion->prepare($request);
     $result->bind_param("i", $id);
     $result->execute();
-    $result->bind_result($quantite, $nomIngredient);
+    $result->bind_result($nombre_place_total, $date_debut, $date_fin, $prix);
 
     if (!$result) {
         return null;
     } else {
         while ($result->fetch()) {
-            $ingredients[$nomIngredient] = $quantite;
+            $info["nbplace"] = $nombre_place_total;
+            $info["datedebut"] = $date_debut;
+            $info["datefin"] = $date_fin;
+            $info["prix"] = $prix;
         }
-        return $ingredients;
+        return $info;
     }
 }

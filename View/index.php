@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="bg-primary border-bottom border-2 border-dark">
         <div class="titre">
             <h1 class="vitemonvol"><a href="index.php" id="retour">V<span class="logo">ite</span>M<span class="logo">on</span>V<span class="logo">ol</span></a></h1>
         </div><br>

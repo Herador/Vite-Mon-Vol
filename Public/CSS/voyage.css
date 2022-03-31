@@ -1,80 +1,113 @@
-img{
-    height: 500px;
+body {
+  background-color: rgb(5, 5, 102);
+}
+
+img {
+  height: 500px;
+  width: 800px;
 }
 
 /* navbar */
 
-header{
-    background-color: lightskyblue;
+header {
+  background-color: lightskyblue;
 }
-.vitemonvol{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
-    float: left;
-    padding-top: 2rem;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-bottom: 0%;
-    font-weight: bold;
+
+.vitemonvol {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  float: left;
+  padding-top: 2rem;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 0%;
+  font-weight: bold;
 }
-.petit{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size : 23px;    
-    font-style: oblique;
-    font-weight: 600;                                     
-    padding-left: 40.5%;
-    margin: 0%;
+
+.petit {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 23px;
+  font-style: oblique;
+  font-weight: 600;
+  padding-left: 40.5%;
+  margin: 0%;
 }
-ul {
-    padding: 0;
-    width: 100%;
-    margin-bottom: 0%;
-  }
-  
-  li {
-    display: inline;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-  }
 
-.lien{
-    outline: none;
-    text-decoration: none;
-    display: inline-block;
-    width: 19.5%;
-    margin-right: 0%;
-    text-align: center;
-    line-height: 3;
-    color: black;
-    font-weight: 600;
-    font-size: 22px;
-  }
-  #retour{
-    outline: none;
-    text-decoration: none;
-    color: black;
+.navigation {
+  padding: 0;
+  width: 100%;
+  margin-bottom: 0%;
 }
-.lien:hover{
-      background-color: darkblue;
-      color : white
-  }
 
-  li:last-child a {
-    margin-right: 0;
-  }
+.onglet {
+  display: inline;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
 
-  .logo{
-      font-size: 35px;
-  }
+.lien {
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 19.5%;
+  margin-right: 0%;
+  text-align: center;
+  line-height: 3;
+  color: black;
+  font-weight: 600;
+  font-size: 22px;
+}
 
-  /* circuit */
+#retour {
+  outline: none;
+  text-decoration: none;
+  color: black;
+}
 
-  .circuit{
-    margin-bottom: 25px;
-  }
+.lien:hover {
+  background-color: darkblue;
+  color: white
+}
 
-  .text-center{
-    margin-top: 35px;
-    margin-bottom: 35px;
-  }
-  
+li:last-child a {
+  margin-right: 0;
+}
+
+.logo {
+  font-size: 35px;
+}
+
+/* reservation */
+#carte {
+  background-color: rgb(5, 5, 102);
+}
+
+#info {
+  padding-top: 20px;
+}
+
+.apartirde {
+  margin: 0 auto;
+}
+
+#prix {
+  padding-top: 60px;
+}
+
+.reserver {
+  padding-top: 20px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+
+/* circuit */
+
+.circuit {
+  margin-bottom: 25px;
+}
+
+.text-center {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
