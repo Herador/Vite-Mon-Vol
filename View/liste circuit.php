@@ -42,21 +42,22 @@ $showcard = $connexion->query($request);
 
 
 
-
+<div class="card-group">
   <?php while ($row = $showcard->fetch_array(MYSQLI_ASSOC)) : ?>
-                    <div class="card-group">
+                    
                         <div class="card">
-                                 <img class="card-img-top" src="..\Public\Image\circuit<?= $row['id']?>.jpg"> 
+                                 <img class="card-img-top" src="..\Public\Image\index<?= $row['id']?>.jpg"> 
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $row['nom']; ?></h5>
-                                    <h4 class="card-text"><?= $row['description']; ?></h4>
+                                    <p class="card-text"><?= $row['description']; ?></p>
                                     <a class="btn btn-primary" href="voyage.php?id=<?= $row['id']; ?>" role="button">En savoir plus</a>
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    
                     
                 <?php endwhile; ?>
+  </div>
 
 </body>
 
