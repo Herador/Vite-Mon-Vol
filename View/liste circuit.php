@@ -24,7 +24,7 @@ $showcard = $connexion->query($request);
 </head>
 
 <body>
-  <header>
+  <header class="bg-primary border-bottom border-2 border-dark">
     <div class="titre">
       <h1 class="vitemonvol"><a href="index.php" id="retour">V<span class="logo">ite</span>M<span class="logo">on</span>V<span class="logo">ol</span></a></h1>
     </div><br>
@@ -42,21 +42,21 @@ $showcard = $connexion->query($request);
 
 
 
-<div class="card-group">
-  <?php while ($row = $showcard->fetch_array(MYSQLI_ASSOC)) : ?>
-                    
-                        <div class="card">
-                                 <img class="card-img-top" src="..\Public\Image\index<?= $row['id']?>.jpg"> 
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $row['nom']; ?></h5>
-                                    <p class="card-text"><?= $row['description']; ?></p>
-                                    <a class="btn btn-primary" href="voyage.php?id=<?= $row['id']; ?>" role="button">En savoir plus</a>
-                                </div>
-                            </a>
-                        </div>
-                    
-                    
-                <?php endwhile; ?>
+  <div class="card-group">
+    <?php while ($row = $showcard->fetch_array(MYSQLI_ASSOC)) : ?>
+
+      <div class="card">
+        <img class="card-img-top" src="..\Public\Image\index<?= $row['id'] ?>.jpg">
+        <div class="card-body">
+          <h5 class="card-title"><?= $row['nom']; ?></h5>
+          <p class="card-text"><?= $row['description']; ?></p>
+          <a class="btn btn-primary" href="voyage.php?id=<?= $row['id']; ?>" role="button">En savoir plus</a>
+        </div>
+        </a>
+      </div>
+
+
+    <?php endwhile; ?>
   </div>
 
 </body>
