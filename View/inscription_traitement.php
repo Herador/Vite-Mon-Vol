@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/connexion_bdd.php';
+require_once('../controller/connexion_bdd.php');
 
 
 if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['prenom'])) {
@@ -8,11 +8,12 @@ if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
     $prenom = htmlspecialchars($_POST['prenom']);
-
+    print_r($email);
+    die();
 
     $check = ("SELECT `nom`, `email`, `password` FROM utilisateur WHERE email = ?");
     $check = $connexion->prepare($check);
-    $check->bind_param("s", $email);
+    $check->bind_param("e", $email);
     $check->execute();
     $data = $check->fetch();
     $row = $check->rowCount();

@@ -38,7 +38,7 @@ $tabreservation = infoReservation($idcircuit);
             <ul class="navigation">
                 <li class="onglet"><a href="..." class="lien">Vol</a></li>
                 <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
-                <li class="onglet"><a href="..." class="lien">Connexion</a></li>
+                <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>
             </ul>
         </nav>
     </header>

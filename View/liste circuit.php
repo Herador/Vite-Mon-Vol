@@ -35,7 +35,7 @@ $showcard = $connexion->query($request);
       <ul>
         <li><a href="..." class="lien">Vol</a></li>
         <li><a href="liste circuit.php" class="lien">Circuit</a></li>
-        <li><a href="..." class="lien">Connexion</a></li>
+        <li><a href="connexion.php" class="lien">Connexion</a></li>
       </ul>
     </nav>
   </header>
