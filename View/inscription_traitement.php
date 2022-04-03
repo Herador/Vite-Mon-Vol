@@ -8,18 +8,17 @@ if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
     $prenom = htmlspecialchars($_POST['prenom']);
-    print_r($email);
-    die();
 
-    $check = ("SELECT `nom`, `email`, `password` FROM utilisateur WHERE email = ?");
+    $check = "SELECT `mail`, `mdp` FROM utilisateur WHERE mail = ?";
     $check = $connexion->prepare($check);
-    $check->bind_param("e", $email);
+    $check->bind_param("s", $email);
     $check->execute();
     $data = $check->fetch();
-    $row = $check->rowCount();
+    $row = $check->num_rows();
 
     $email = strtolower($email);
-
+print_r($row);
+die();
 
     if ($row == 0) {
         if (strlen($nom) <= 100) {
@@ -29,11 +28,11 @@ if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'
 
                     $insert = ('INSERT INTO utilisateur(nom, prenom, mail, mdp) VALUES(?, ?, ?, ?)');
                     $insert = $connexion->prepare($insert);
-                    $insert->bind_param("ssss", $nom, $email, $password, $prenom);
+                    $insert->bind_param("ssss", $nom, $prenom, $email, $password);
                     $insert->execute();
 
-
-                    header('Location:inscription.php?reg_err=success');
+                    $_SESSION['username'] = $nom + $prenom;
+                    header('Location:index.php');
                     die();
                 } else {
                     header('Location: inscription.php?reg_err=password');

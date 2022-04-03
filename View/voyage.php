@@ -1,6 +1,7 @@
 <?php
 require_once('../controller/connexion_bdd.php');
 require_once('../controller/traitement.php');
+session_start();
 
 $idcircuit = $_GET['id'];
 $tabvoyage = infovoyage($idcircuit);
@@ -16,7 +17,7 @@ $tabreservation = infoReservation($idcircuit);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?= $tabvoyage['nom']?></title>
+    <title><?= $tabvoyage['nom'] ?></title>
     <!-- CSS only -->
     <link rel="stylesheet" href="../public/css/voyage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -38,7 +39,15 @@ $tabreservation = infoReservation($idcircuit);
             <ul class="navigation">
                 <li class="onglet"><a href="..." class="lien">Vol</a></li>
                 <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
-                <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>
+
+                <?php if ($_SESSION['username'] !== "") : ?>
+                    <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
+                <?php else if ($session['admin'] !== "") : ?>
+                    <li class="onglet"><a href="connexion.php" class="lien">Gestion du site</a></li>
+                <?php else : ?>
+                    <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>
+                <?php endif ?>
+                
             </ul>
         </nav>
     </header>
@@ -83,7 +92,7 @@ $tabreservation = infoReservation($idcircuit);
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"  class="col-sm-9 text-center text-white" id="prix">
+                        <td colspan="3" class="col-sm-9 text-center text-white" id="prix">
                             <p class="apartirde"> a partir de </p>
                             <h1><strong><?= $tabreservation['prix'] ?> €</strong></h1>
                             <p>TTC/pres.</p>
@@ -92,8 +101,8 @@ $tabreservation = infoReservation($idcircuit);
                 </tbody>
             </table>
             <div class="text-center" class="reserver">
-            <a href="#" class="btn btn-warning" role="button">Reserver dés maintenant</a>
-        </div>
+                <a href="#" class="btn btn-warning" role="button">Reserver dés maintenant</a>
+            </div>
         </div>
     </div>
     <div class="container">

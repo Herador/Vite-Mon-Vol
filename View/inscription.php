@@ -12,19 +12,14 @@
         <body>
         <div class="login-form">
             <?php 
+                session_start();
+
                 if(isset($_GET['reg_err']))
                 {
                     $err = htmlspecialchars($_GET['reg_err']);
 
                     switch($err)
                     {
-                        case 'success':
-                        ?>
-                            <div class="alert alert-success">
-                                <strong>Succès</strong> inscription réussie !
-                            </div>
-                        <?php
-                        break;
 
                         case 'password':
                         ?>

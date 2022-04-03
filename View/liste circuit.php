@@ -1,5 +1,6 @@
 <?php
 require_once("../controller/connexion_bdd.php");
+session_start();
 
 
 $request = "SELECT `id`, `description`, `nom` FROM circuit";
