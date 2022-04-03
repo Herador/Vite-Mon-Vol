@@ -12,13 +12,19 @@
 
 <body>
     <?php
+    session_start();
+
     if (isset($_GET['erreur'])) {
         $err = $_GET['erreur'];
-        if ($err == 1 || $err == 2)
-            echo "<p style='color:red'>L'email ou le mot de passe est incorrect</p>";
-    }  ?>
+        if ($err == 1 || $err == 2) : ?>
+            <div class="alert alert-danger">
+                <strong>Erreur</strong> mot de passe différent
+            </div>;
+    <?php endif;
+    } ?>
+    
     <div class="login-form">
-        <form action="traitement_connexion.php" method="POST">
+        <form action="../controller/traitement_connexion.php" method="POST">
             <h2 class="text-center">Connexion</h2>
             <div class="form-group">
                 <input type="email" name="email" class="form-control" placeholder="Email" required="required" autocomplete="off">

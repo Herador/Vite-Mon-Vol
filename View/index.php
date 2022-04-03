@@ -1,6 +1,10 @@
-<?php 
-    session_start(); 
-    ?>
+<?php
+session_start();
+require_once('../controller/connexion_bdd.php');
+require_once('../controller/traitement.php');
+
+$tabprofil = infoProfil($_SESSION['id'])
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../Public/CSS/index.css">
-    <title>Accueil</title>
+    <title>ViteMonVol</title>
 </head>
 
 <body>
@@ -26,13 +30,33 @@
             <p class="petit">Le site référence en terme de circuit</p>
         </div>
         <nav>
-            <ul>
-                <li><a href="..." class="lien">Vol</a></li>
-                <li><a href="liste circuit.php" class="lien">Circuit</a></li>
-                <li><a href="connexion.php" class="lien">Connexion</a></li>
+            <ul class="navigation">
+                <li class="onglet"><a href="..." class="lien">Vol</a></li>
+                <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
+
+                <?php if (isset($_SESSION)) : ?>
+
+                    <?php if ($_SESSION['id'] !== "") : ?>
+                        <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
+                    <?php elseif ($session['admin'] == 1) : ?>
+                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php endif ?>
+                <?php else : ?>
+                    <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>
+                <?php endif ?>
             </ul>
         </nav>
     </header>
+
+    <?php
+    if ($_GET['success'] == true) :
+        $success = htmlspecialchars($_GET['success']); ?>
+
+        <div class="alert alert-success" role="alert">
+            <strong>Bienvenue <?= $tabprofil['nom'] ?> <?= $tabprofil['prenom'] ?></strong> vous étez bien connecté
+        </div>
+
+    <?php endif ?>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -45,7 +69,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Japon</h1>
                     <h4>Un pays à l'accueil chaleureux et à la gastronomie exquise avec des paysages somptueux et une architecture enchanteresse. </h4>
-                    <a href="voyage.php?id=<?=1?> " role="button">
+                    <a href="voyage.php?id=<?= 1 ?> " role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>
@@ -59,7 +83,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Grèce</h1>
                     <h4>La Grèce est sans aucun doute l’un des plus beaux pays du monde : ruines, histoire, superbes paysages, la mer, le ciel bleu, le soleil. </h4>
-                    <a href="voyage.php?id=<?=2?> " role="button">
+                    <a href="voyage.php?id=<?= 2 ?> " role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>
@@ -73,7 +97,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Canada</h1>
                     <h4>Grands espaces, nature omniprésente, faune exceptionnelle… Si vous voulez vous ressourcer dans les bras de Dame Nature, vous êtes au bon endroit.</h4>
-                    <a href="voyage.php?id=<?=3?> " role="button">
+                    <a href="voyage.php?id=<?= 3 ?> " role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>

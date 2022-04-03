@@ -40,14 +40,16 @@ $tabreservation = infoReservation($idcircuit);
                 <li class="onglet"><a href="..." class="lien">Vol</a></li>
                 <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
 
-                <?php if ($_SESSION['username'] !== "") : ?>
-                    <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
-                <?php else if ($session['admin'] !== "") : ?>
-                    <li class="onglet"><a href="connexion.php" class="lien">Gestion du site</a></li>
+                <?php if (isset($_SESSION)) : ?>
+
+                    <?php if ($_SESSION['id'] !== "") : ?>
+                        <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
+                    <?php elseif ($session['admin'] == 1) : ?>
+                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php endif ?>
                 <?php else : ?>
                     <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>
                 <?php endif ?>
-                
             </ul>
         </nav>
     </header>

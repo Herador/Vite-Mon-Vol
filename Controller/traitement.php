@@ -1,6 +1,7 @@
 <?php
 
 require_once('connexion_bdd.php');
+session_start();
 
 function infoVoyage($id)
 {
@@ -85,5 +86,33 @@ function infoReservation($id)
             $info["prix"] = $prix;
         }
         return $info;
+    }
+}
+
+function infoProfil($id)
+{
+    global $connexion;
+    $profil = [];
+
+    $request = "SELECT `id`,`nom`,`prenom`,`mail`,`mdp`,`is_admin`
+                FROM `utilisateur` 
+                WHERE id = ? ";
+    $result = $connexion->prepare($request);
+    $result->bind_param("i", $id);
+    $result->execute();
+    $result->bind_result($id, $nom, $prenom, $email ,$password, $admin);
+
+    if (!$result) {
+        return null;
+    } else {
+        while ($result->fetch()) {
+            $profil["id"] = $id;
+            $profil["nom"] = $nom;
+            $profil["prenom"] = $prenom;
+            $profil["email"] = $email;
+            $profil["password"] = $password;
+            $profil["admin"] = $admin;
+        }
+        return $profil;
     }
 }
