@@ -64,7 +64,7 @@
         }
         ?>
 
-        <form action="../controller/inscription_traitement.php" method="post">
+        <form action="../controller/traitement_inscription.php" method="post">
             <h2 class="text-center">Inscription</h2>
             <div class="form-group">
                 <input type="text" name="nom" class="form-control" placeholder="Nom" required="required" autocomplete="off">
