@@ -42,9 +42,9 @@ $tabreservation = infoReservation($idcircuit);
 
                 <?php if (isset($_SESSION)) : ?>
 
-                    <?php if ($_SESSION['id'] !== "") : ?>
+                    <?php if ($session['admin'] == 1) : ?>
                         <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
-                    <?php elseif ($session['admin'] == 1) : ?>
+                    <?php elseif ($_SESSION['id'] !== "") :?>
                         <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
                     <?php endif ?>
                 <?php else : ?>

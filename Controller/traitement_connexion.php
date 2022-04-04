@@ -18,16 +18,24 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
       if ($count != 0) {
 
-         $requete2 = "SELECT `id` , `is_admin`,  
-                  FROM utilisateur 
-                  WHERE mail = '" . $email . "' ";
+         $requete2 = "SELECT `id` , `nom`, `prenom`, `mail`, `mdp`, `is_admin` 
+                      FROM utilisateur 
+                      WHERE mail = '" . $email . "' ";
          $exec_requete2 = mysqli_query($connexion, $requete2);
          $reponse2      = mysqli_fetch_array($exec_requete2);
-         $admin = $reponse['is_admin'];
-         $id = $reponse['id'];
+         $id = $reponse2['id'];
+         $nom = $reponse2['nom'];
+         $prenom = $reponse2['prenom'];
+         $mail = $reponse2['mail'];
+         $mdp = $reponse2['mdp'];
+         $is_admin = $reponse2['is_admin'];
 
          $_SESSION['id'] = $id;
-         $_SESSION['admin'] = $admin;
+         $_SESSION['nom'] = $nom;
+         $_SESSION['prenom'] = $prenom;
+         $_SESSION['mail'] = $mail;
+         $_SESSION['mdp'] = $mdp;
+         $_SESSION['is_admin'] = $is_admin;
          header('Location: ../View/index.php?success=true');
          die();
       } else {

@@ -2,8 +2,6 @@
 session_start();
 require_once('../controller/connexion_bdd.php');
 require_once('../controller/traitement.php');
-
-$tabprofil = infoProfil($_SESSION['id'])
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +20,15 @@ $tabprofil = infoProfil($_SESSION['id'])
 </head>
 
 <body>
+    <a href='inscription.php?deconnexion=true'><span>Déconnexion</span></a>
+
+    <?php
+    if (isset($_GET['deconnexion'])) {
+        if ($_GET['deconnexion'] == true) {
+            session_unset();
+            header("location:index.php");
+        }
+    } ?>
     <header class="bg-primary border-bottom border-2 border-dark">
         <div class="titre">
             <h1 class="vitemonvol"><a href="index.php" id="retour">V<span class="logo">ite</span>M<span class="logo">on</span>V<span class="logo">ol</span></a></h1>
@@ -34,12 +41,12 @@ $tabprofil = infoProfil($_SESSION['id'])
                 <li class="onglet"><a href="..." class="lien">Vol</a></li>
                 <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
 
-                <?php if (isset($_SESSION)) : ?>
+                <?php if (isset($_SESSION['id'])) : ?>
 
-                    <?php if ($_SESSION['id'] !== "") : ?>
-                        <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
-                    <?php elseif ($session['admin'] == 1) : ?>
-                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php if ($_SESSION['is_admin'] == 1) : ?>
+                        <li class="onglet"><a href="..." class="lien">Gestion du site</a></li>
+                    <?php elseif ($_SESSION['id'] !== "") : ?>
+                        <li class="onglet"><a href="admin.php" class="lien">Mon compte</a></li>
                     <?php endif ?>
                 <?php else : ?>
                     <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>
@@ -49,13 +56,14 @@ $tabprofil = infoProfil($_SESSION['id'])
     </header>
 
     <?php
-    if ($_GET['success'] == true) :
-        $success = htmlspecialchars($_GET['success']); ?>
+    if (isset($_GET['success'])) :
 
-        <div class="alert alert-success" role="alert">
-            <strong>Bienvenue <?= $tabprofil['nom'] ?> <?= $tabprofil['prenom'] ?></strong> vous étez bien connecté
-        </div>
+        if ($_GET['success'] == true) : ?>
 
+            <div class="alert alert-success" role="alert">
+                <strong>Bienvenue <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?></strong> vous étez bien connecté
+            </div>
+        <?php endif ?>
     <?php endif ?>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
