@@ -1,6 +1,6 @@
 <?php
 
-require_once('../controller/connexion_bdd.php');
+require_once('connexion_bdd.php');
 session_start();
 
 

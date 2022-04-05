@@ -1,8 +1,12 @@
-/* navbar */
+body{
+    background-color: rgb(0, 0, 0);
+}
 
-header {
-    background-color: lightskyblue;
-  }
+.bg{
+    color: rgb(0, 0, 0);
+    height: 100%;
+}
+/* navbar */
   
   .vitemonvol {
     font-family: Arial, Helvetica, sans-serif;
@@ -66,4 +70,16 @@ header {
   
   .logo {
     font-size: 35px;
+  }
+
+  /* profil */
+
+  .profil{
+    padding-top: 80px;
+    margin : 0 auto;
+    width: 430px;
+  }
+
+  th, td {
+      padding-left: 40px;
   }

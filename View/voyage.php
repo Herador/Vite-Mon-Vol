@@ -3,6 +3,7 @@ require_once('../controller/connexion_bdd.php');
 require_once('../controller/traitement.php');
 session_start();
 
+$id = $_SESSION['id'];
 $idcircuit = $_GET['id'];
 $tabvoyage = infovoyage($idcircuit);
 $tabville = infoville($idcircuit);
@@ -53,6 +54,14 @@ $tabreservation = infoReservation($idcircuit);
             </ul>
         </nav>
     </header>
+    <?php
+    if (isset($_GET['voyage'])) {
+        if ($_GET['voyage'] == false) :?>
+            <div class="alert alert-danger" role="alert">
+                <strong>Merci de vous connectez à votre compte afin de réserver</strong> 
+            </div>
+        <?php endif; 
+    } ?>
     <div id="carte" class="row g-0  position-relative">
         <div class="col-md-6 mb-md-0 p-md-4">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -77,7 +86,7 @@ $tabreservation = infoReservation($idcircuit);
             <table>
                 <thead>
                     <th class="mt-0" colspan="3">
-                        <h2 class="display-4 text-center text-white"><strong> REVERVATION ET TARIF</strong></h2>
+                        <h2 class="display-4 text-center text-white"><strong> REVERVATION ET TARIFS</strong></h2>
                     </th>
                 </thead>
                 <tbody>
@@ -103,7 +112,7 @@ $tabreservation = infoReservation($idcircuit);
                 </tbody>
             </table>
             <div class="text-center" class="reserver">
-                <a href="#" class="btn btn-warning" role="button">Reserver dés maintenant</a>
+                <a href="reservation.php?idcircuit=<?= $idcircuit?>" class="btn btn-warning" role="button">Reserver dés maintenant</a>
             </div>
         </div>
     </div>

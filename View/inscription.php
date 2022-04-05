@@ -82,16 +82,6 @@
                 <button type="submit" class="btn btn-primary btn-block">Inscription</button>
             </div>
         </form>
-        <a href='inscription.php?deconnexion=true'><span>Déconnexion</span></a>
-
-        <?php
-        if (isset($_GET['deconnexion'])) {
-            if ($_GET['deconnexion'] == true) {
-                session_unset();
-                header("location:index.php");
-            }
-        }
-        ?>
     </div>
     <style>
         .login-form {

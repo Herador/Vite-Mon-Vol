@@ -93,20 +93,20 @@ function circuit($id)
     global $connexion;
     $circuitp = [];
 
-    $request = "SELECT COUNT(*),`circuit.nom`, `circuit.nombre_place_total`, `circuit.date_debut`, `circuit.date_fin`, `circuit.prix`, `utilisateur_circuit.date_reservation` 
-                FROM `circuit`, `utilisateur_circuit` 
-                WHERE `utilisateur_circuit.id_circuit` = `circuit.id` 
-                AND `utilisateur_circuit.id_utilisateur` = ?";
+    $request = "SELECT COUNT(*),`circuit`.`nom`, `circuit`.`nombre_place_total`, `circuit`.`date_debut`, `circuit`.`date_fin`, `circuit`.`prix`, `utilisateur_circuit`.`date_reservation` 
+                FROM `circuit`, `utilisateur_circuit`
+                WHERE `utilisateur_circuit`.`id_circuit` = `circuit`.`id` 
+                AND `utilisateur_circuit`.`id_utilisateur` = ? ";
     $result = $connexion->prepare($request);
-    $result->bind_param("id", $id);
+    $result->bind_param("i", $id);
     $result->execute();
-    $result->bind_result($id, $nom, $place, $dated ,$datef, $prix, $dater);
+    $result->bind_result($count, $nom, $place, $dated ,$datef, $prix, $dater);
 
     if (!$result) {
         return null;
     } else {
         while ($result->fetch()) {
-            $circuitp["id"] = $id;
+            $circuitp["count"] = $count;
             $circuitp["nom"] = $nom;
             $circuitp["nombre_place_total"] = $place;
             $circuitp["date_debut"] = $dated;

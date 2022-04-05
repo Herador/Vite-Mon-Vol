@@ -48,8 +48,6 @@ $showcard = $connexion->query($request);
         </nav>
     </header>
 
-
-
   <div class="card-group">
     <?php while ($row = $showcard->fetch_array(MYSQLI_ASSOC)) : ?>
 

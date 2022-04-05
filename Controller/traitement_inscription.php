@@ -1,5 +1,5 @@
 <?php
-require_once('../controller/connexion_bdd.php');
+require_once('connexion_bdd.php');
 session_start();
 
 
@@ -28,8 +28,8 @@ if (!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'
                     $insert->execute();
 
                     $requete2 = "SELECT `id` , `nom`, `prenom`, `mail`, `mdp`, `is_admin` 
-                      FROM utilisateur 
-                      WHERE mail = '" . $email . "' ";
+                                 FROM utilisateur 
+                                 WHERE mail = '" . $email . "' ";
                     $exec_requete2 = mysqli_query($connexion, $requete2);
                     $reponse2      = mysqli_fetch_array($exec_requete2);
                     $id = $reponse2['id'];

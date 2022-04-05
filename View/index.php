@@ -20,15 +20,7 @@ require_once('../controller/traitement.php');
 </head>
 
 <body>
-    <a href='inscription.php?deconnexion=true'><span>Déconnexion</span></a>
-
-    <?php
-    if (isset($_GET['deconnexion'])) {
-        if ($_GET['deconnexion'] == true) {
-            session_unset();
-            header("location:index.php");
-        }
-    } ?>
+    
     <header class="bg-primary border-bottom border-2 border-dark">
         <div class="titre">
             <h1 class="vitemonvol"><a href="index.php" id="retour">V<span class="logo">ite</span>M<span class="logo">on</span>V<span class="logo">ol</span></a></h1>
@@ -54,7 +46,6 @@ require_once('../controller/traitement.php');
             </ul>
         </nav>
     </header>
-
     <?php
     if (isset($_GET['success'])) :
 
@@ -65,6 +56,23 @@ require_once('../controller/traitement.php');
             </div>
         <?php endif ?>
     <?php endif ?>
+    <?php
+    if (isset($_GET['deconnexion'])) {
+        if ($_GET['deconnexion'] == true) :
+            session_unset();?>
+            <div class="alert alert-success" role="alert">
+                <strong>Vous vous etez bien deconnecté</strong> 
+            </div>
+        <?php endif; 
+    } ?>
+    <?php
+    if (isset($_GET['voyage'])) {
+        if ($_GET['voyage'] == true) :?>
+            <div class="alert alert-success" role="alert">
+                <strong>Merci de votre confience. Nous esperons que vous serez satisfait</strong> 
+            </div>
+        <?php endif; 
+    } ?>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -77,7 +85,7 @@ require_once('../controller/traitement.php');
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Japon</h1>
                     <h4>Un pays à l'accueil chaleureux et à la gastronomie exquise avec des paysages somptueux et une architecture enchanteresse. </h4>
-                    <a href="voyage.php?id=<?= 1 ?> " role="button">
+                    <a href="voyage.php?id=<?= 1 ?>" role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>
