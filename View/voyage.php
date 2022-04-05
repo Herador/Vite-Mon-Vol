@@ -28,7 +28,7 @@ $tabreservation = infoReservation($idcircuit);
 </head>
 
 <body>
-    <header class="bg-primary border-bottom border-2 border-dark">
+<header class="bg-primary border-bottom border-2 border-dark">
         <div class="titre">
             <h1 class="vitemonvol"><a href="index.php" id="retour">V<span class="logo">ite</span>M<span class="logo">on</span>V<span class="logo">ol</span></a></h1>
         </div><br>
@@ -40,12 +40,12 @@ $tabreservation = infoReservation($idcircuit);
                 <li class="onglet"><a href="..." class="lien">Vol</a></li>
                 <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
 
-                <?php if (isset($_SESSION)) : ?>
+                <?php if (isset($_SESSION['id'])) : ?>
 
-                    <?php if ($session['admin'] == 1) : ?>
-                        <li class="onglet"><a href="..." class="lien">Mon compte</a></li>
-                    <?php elseif ($_SESSION['id'] !== "") :?>
+                    <?php if ($_SESSION['is_admin'] == 1) : ?>
                         <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php elseif ($_SESSION !== "") : ?>
+                        <li class="onglet"><a href="profil.php" class="lien">Mon compte</a></li>
                     <?php endif ?>
                 <?php else : ?>
                     <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>

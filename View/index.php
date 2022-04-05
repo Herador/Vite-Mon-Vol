@@ -44,9 +44,9 @@ require_once('../controller/traitement.php');
                 <?php if (isset($_SESSION['id'])) : ?>
 
                     <?php if ($_SESSION['is_admin'] == 1) : ?>
-                        <li class="onglet"><a href="..." class="lien">Gestion du site</a></li>
-                    <?php elseif ($_SESSION['id'] !== "") : ?>
-                        <li class="onglet"><a href="admin.php" class="lien">Mon compte</a></li>
+                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php elseif ($_SESSION !== "") : ?>
+                        <li class="onglet"><a href="profil.php" class="lien">Mon compte</a></li>
                     <?php endif ?>
                 <?php else : ?>
                     <li class="onglet"><a href="connexion.php" class="lien">Connexion</a></li>

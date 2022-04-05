@@ -91,7 +91,7 @@ function infoReservation($id)
 function circuit($id)
 {
     global $connexion;
-    $circuit = [];
+    $circuitp = [];
 
     $request = "SELECT COUNT(*),`circuit.nom`, `circuit.nombre_place_total`, `circuit.date_debut`, `circuit.date_fin`, `circuit.prix`, `utilisateur_circuit.date_reservation` 
                 FROM `circuit`, `utilisateur_circuit` 
