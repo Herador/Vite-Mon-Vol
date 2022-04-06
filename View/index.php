@@ -20,7 +20,33 @@ require_once('../controller/traitement.php');
 </head>
 
 <body>
-    
+<?php
+    if (isset($_GET['voyage'])) {
+        if ($_GET['voyage'] == 1) :?>
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
+                <strong>Merci de votre confience. Nous esperons que vous serez satisfait</strong> 
+            </div>
+        <?php endif; 
+    } ?>
+<?php
+    if (isset($_GET['success'])) :
+
+        if ($_GET['success'] == true) : ?>
+
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
+                <strong>Bienvenue <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?></strong> vous étez bien connecté
+            </div>
+        <?php endif ?>
+    <?php endif ?>
+<?php
+    if (isset($_GET['deconnexion'])) {
+        if ($_GET['deconnexion'] == true) :
+            session_unset();?>
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
+                <strong>Vous vous etez bien deconnecté</strong> 
+            </div>
+        <?php endif; 
+    } ?>
     <header class="bg-primary border-bottom border-2 border-dark">
         <div class="titre">
             <h1 class="vitemonvol"><a href="index.php" id="retour">V<span class="logo">ite</span>M<span class="logo">on</span>V<span class="logo">ol</span></a></h1>
@@ -46,33 +72,6 @@ require_once('../controller/traitement.php');
             </ul>
         </nav>
     </header>
-    <?php
-    if (isset($_GET['success'])) :
-
-        if ($_GET['success'] == true) : ?>
-
-            <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong>Bienvenue <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?></strong> vous étez bien connecté
-            </div>
-        <?php endif ?>
-    <?php endif ?>
-    <?php
-    if (isset($_GET['deconnexion'])) {
-        if ($_GET['deconnexion'] == true) :
-            session_unset();?>
-            <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong>Vous vous etez bien deconnecté</strong> 
-            </div>
-        <?php endif; 
-    } ?>
-    <?php
-    if (isset($_GET['voyage'])) {
-        if ($_GET['voyage'] == 1) :?>
-            <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong>Merci de votre confience. Nous esperons que vous serez satisfait</strong> 
-            </div>
-        <?php endif; 
-    } ?>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
