@@ -51,7 +51,7 @@ require_once('../controller/traitement.php');
 
         if ($_GET['success'] == true) : ?>
 
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
                 <strong>Bienvenue <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?></strong> vous étez bien connecté
             </div>
         <?php endif ?>
@@ -60,15 +60,15 @@ require_once('../controller/traitement.php');
     if (isset($_GET['deconnexion'])) {
         if ($_GET['deconnexion'] == true) :
             session_unset();?>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
                 <strong>Vous vous etez bien deconnecté</strong> 
             </div>
         <?php endif; 
     } ?>
     <?php
     if (isset($_GET['voyage'])) {
-        if ($_GET['voyage'] == true) :?>
-            <div class="alert alert-success" role="alert">
+        if ($_GET['voyage'] == 1) :?>
+            <div class="alert alert-success" role="alert" style="margin: 0%;">
                 <strong>Merci de votre confience. Nous esperons que vous serez satisfait</strong> 
             </div>
         <?php endif; 

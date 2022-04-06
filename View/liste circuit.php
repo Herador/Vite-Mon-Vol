@@ -61,7 +61,6 @@ $showcard = $connexion->query($request);
         </a>
       </div>
 
-
     <?php endwhile; ?>
   </div>
 

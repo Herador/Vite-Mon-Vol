@@ -61,11 +61,11 @@ $tabcircuit = circuit($id);
 
                         <?php
                         if (isset($_GET['key']) && ($_GET['key'] == 1)) : ?>
-                                <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=nom" method="POST">
-                                    <input type="text" value="<?= $_SESSION['nom'] ?>" name="modif">
-                                    <input class="btn btn-success" type="submit" value="valider">
-                                </form>
-                            <?php 
+                            <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=nom" method="POST">
+                                <input type="text" value="<?= $_SESSION['nom'] ?>" name="modif">
+                                <input class="btn btn-success" type="submit" value="valider">
+                            </form>
+                        <?php
                         else : ?>
                             <p class="card-text"><?= $_SESSION['nom'] ?>
                             <div class="modif"><a class="btn btn-warning" href="profil.php?key=1" role="button">changer</a></div>
@@ -75,11 +75,11 @@ $tabcircuit = circuit($id);
                         <h5 class="card-text">Mon prenom :</h5>
 
                         <?php if (isset($_GET['key']) &&  ($_GET['key'] == 2)) : ?>
-                                    <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=prenom" method="POST">
-                                        <input type="text" value="<?= $_SESSION['prenom'] ?>" name="modif">
-                                        <input class="btn btn-success" type="submit" value="valider">
-                                    </form>
-                            <?php 
+                            <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=prenom" method="POST">
+                                <input type="text" value="<?= $_SESSION['prenom'] ?>" name="modif">
+                                <input class="btn btn-success" type="submit" value="valider">
+                            </form>
+                        <?php
                         else : ?>
                             <p class="card-text"><?= $_SESSION['prenom'] ?>
                             <div class="modif"><a class="btn btn-warning" href="profil.php?key=2" role="button">changer</a></div>
@@ -89,11 +89,11 @@ $tabcircuit = circuit($id);
                         <h5 class="card-text">Mon mail :</h5>
 
                         <?php if (isset($_GET['key']) &&  ($_GET['key'] == 3)) : ?>
-                                    <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=mail" method="POST">
-                                        <input type="text" value="<?= $_SESSION['mail'] ?>" name="modif">
-                                        <input class="btn btn-success" type="submit" value="valider">
-                                    </form>
-                            <?php 
+                            <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=mail" method="POST">
+                                <input type="text" value="<?= $_SESSION['mail'] ?>" name="modif">
+                                <input class="btn btn-success" type="submit" value="valider">
+                            </form>
+                        <?php
                         else : ?>
                             <p class="card-text"><?= $_SESSION['mail'] ?>
                             <div class="modif"><a class="btn btn-warning" href="profil.php?key=3" role="button">changer</a></div>
@@ -103,11 +103,11 @@ $tabcircuit = circuit($id);
                         <h5 class="card-text">Mon mot de passe :</h5>
 
                         <?php if (isset($_GET['key']) && ($_GET['key'] == 4)) : ?>
-                                    <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=mdp" method="POST">
-                                        <input type="text" value="<?= $_SESSION['mdp'] ?>" name="modif">
-                                        <input class="btn btn-success" type="submit" value="valider">
-                                    </form>
-                            <?php 
+                            <form action="../Controller/traitement_modif.php?id=<?= $id ?>&col=mdp" method="POST">
+                                <input type="text" value="<?= $_SESSION['mdp'] ?>" name="modif">
+                                <input class="btn btn-success" type="submit" value="valider">
+                            </form>
+                        <?php
                         else : ?>
                             <p class="card-text"><?= $_SESSION['mdp'] ?>
                             <div class="modif"><a class="btn btn-warning" href="profil.php?key=4" role="button">changer</a></div>
@@ -123,7 +123,7 @@ $tabcircuit = circuit($id);
                     <div class="card-body">
                         <h4 class="card-title"><strong>Mes voyage</strong></h4>
 
-                        <?php if ($tabcircuit['count'] == 0) : ?>
+                        <?php if (empty($tabcircuit)) : ?>
                             Aucun voyage ! Vivez une incoyable aventure en <a href="liste circuit.php">cliquant ici</a>
                         <?php else : ?>
                             <div class="table" style="height: 100%;">
@@ -137,12 +137,14 @@ $tabcircuit = circuit($id);
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
-                                        <tr>
-                                            <td><?= $tabcircuit["nom"] ?></td>
-                                            <td><?= $tabcircuit["date_reservation"] ?></td>
-                                            <td><?= $tabcircuit["date_debut"] ?></td>
-                                            <td><?= $tabcircuit["date_fin"] ?></td>
-                                        </tr>
+                                        <?php foreach ($tabcircuit as $key => $value) : ?>
+                                            <tr>
+                                                <td><?= $value["nom"] ?></td>
+                                                <td><?= $value["date_reservation"] ?></td>
+                                                <td><?= $value["date_debut"] ?></td>
+                                                <td><?= $value["date_fin"] ?></td>
+                                            </tr>
+                                        <?php endforeach ?>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -150,7 +152,7 @@ $tabcircuit = circuit($id);
             </div>
         </div>
     </div>
-</div>
+    </div>
 </body>
 
 </html>

@@ -8,7 +8,7 @@ function infoVoyage($id)
     $voyage = [];
     $jour = [];
 
-    $requestVoyage = "SELECT `circuit`.`nom`, `deplacement`.`planning_jour`,`deplacement`.`nombre_etape`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`,`deplacement`.`id_ville_depart`,`deplacement`.`id_ville_arrivee`, `ville`.`nom`
+    $requestVoyage = "SELECT `circuit`.`id`, `deplacement`.`planning_jour`, `deplacement`.`heure_depart`, `deplacement`.`heure_arrivee`,`deplacement`.`id_ville_depart`,`deplacement`.`id_ville_arrivee`, `ville`.`nom`
                     FROM `circuit`, `circuit_deplacement`, `deplacement`, `ville` 
                     WHERE `deplacement`.`id_ville_depart` = `ville`.`id`
                     AND `deplacement`.`id` = `circuit_deplacement`.`id_deplacement`
@@ -17,20 +17,20 @@ function infoVoyage($id)
     $resultVoyage = $connexion->prepare($requestVoyage);
     $resultVoyage->bind_param("i", $id);
     $resultVoyage->execute();
-    $resultVoyage->bind_result($nom, $planning_jour, $nombre_etape ,$heure_depart, $heure_arrivee, $id_ville_depart, $id_ville_arrivee, $villedepart);
+    $resultVoyage->bind_result($id, $planning_jour, $heure_depart, $heure_arrivee, $id_ville_depart, $id_ville_arrivee, $villedepart);
 
     if (!$resultVoyage) {
         return null;
     } else {
+        $c = 1;
         while ($resultVoyage->fetch()) {
-            $voyage['nom'] = $nom;
-            $jour['idjour'] = $nombre_etape;
             $jour['planing'] = $planning_jour;
             $jour['depart'] = $heure_depart;
             $jour['arrivee'] = $heure_arrivee;
             $jour['villedepart'] = $villedepart;
             $jour['idvillearrivee'] = $id_ville_arrivee;
-            $voyage['jour'.$nombre_etape] = $jour;
+            $voyage['jour'.$c] = $jour;
+            $c += 1;
         }
         return $voyage;
     }
@@ -92,28 +92,29 @@ function circuit($id)
 {
     global $connexion;
     $circuitp = [];
+    $reservation = [];
 
-    $request = "SELECT COUNT(*),`circuit`.`nom`, `circuit`.`nombre_place_total`, `circuit`.`date_debut`, `circuit`.`date_fin`, `circuit`.`prix`, `utilisateur_circuit`.`date_reservation` 
+    $request = "SELECT `circuit`.`nom`, `circuit`.`nombre_place_total`, `circuit`.`date_debut`, `circuit`.`date_fin`, `circuit`.`prix`, `utilisateur_circuit`.`id`,`utilisateur_circuit`.`date_reservation` 
                 FROM `circuit`, `utilisateur_circuit`
                 WHERE `utilisateur_circuit`.`id_circuit` = `circuit`.`id` 
                 AND `utilisateur_circuit`.`id_utilisateur` = ? ";
     $result = $connexion->prepare($request);
     $result->bind_param("i", $id);
     $result->execute();
-    $result->bind_result($count, $nom, $place, $dated ,$datef, $prix, $dater);
+    $result->bind_result($nom, $place, $dated ,$datef, $prix, $idreservation ,$dater);
 
     if (!$result) {
         return null;
     } else {
         while ($result->fetch()) {
-            $circuitp["count"] = $count;
             $circuitp["nom"] = $nom;
             $circuitp["nombre_place_total"] = $place;
             $circuitp["date_debut"] = $dated;
             $circuitp["date_fin"] = $datef;
             $circuitp["prix"] = $prix;
             $circuitp["date_reservation"] = $dater;
+            $reservation[$idreservation] = $circuitp;
         }
-        return $circuitp;
+        return $reservation;
     }
 }
