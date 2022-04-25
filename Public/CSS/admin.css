@@ -67,3 +67,17 @@ header {
   .logo {
     font-size: 35px;
   }
+
+  
+
+  .tablenom2 {
+    background-color: white;
+    padding-left: 585px;
+    padding-top: 50px
+    
+  }
+
+  .btn{
+    position: absolute;
+    margin-left: 250px;
+  }

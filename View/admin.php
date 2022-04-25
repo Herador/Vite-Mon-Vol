@@ -54,16 +54,17 @@
 
     <h1 class="text-center">TOUT LES UTILISATEURS</h1>
     </div>
-    <div class="table">
+    
         <table class="text-center" >
             <thead>
+                
                 <tr style="padding: 20px;">
-                    <th scope="col" style="padding: 10px;">#</th>
-                    <th scope="col" style="padding: 10px;">Nom</th>
-                    <th scope="col" style="padding: 10px;">prénom </th>
-                    <th scope="col" style="padding: 10px;">mail</th>
-                    <th scope="col" style="padding: 10px;">mdp</th>
-
+                    <th class="tablenom2" scope="col" style="padding: 10px;"></th>
+                    <th class="tablenom2" scope="col" style="padding: 10px;">Nom</th>
+                    <th class="tablenom2" scope="col" style="padding: 10px;">prénom </th>
+                    <th class="tablenom2" scope="col" style="padding: 10px;">mail</th>
+                    <th class="tablenom2" scope="col" style="padding: 10px;">mdp</th>
+               >
                 </tr>
             </thead>
             <tbody>
@@ -73,18 +74,26 @@
                 $result = $connexion->query($requete);
                 foreach ($result as $range) : ?>
                     <tr style="padding: 20px;">
-                        <th scope="row">user <?= $range["id"] ?></th>
-                        <td style="padding: 10px;"><?= $range["nom"] ?></td>
-                        <td style="padding: 10px;"><?= $range["prenom"] ?></td>
-                        <td style="padding: 10px;"><?= $range["mail"] ?></td>
-                        <td style="padding: 10px;"><?= $range["mdp"] ?></td>
-                    </tr>
+                   
+                        <th class="tablenom2" scope="row">user <?= $range["id"] ?></th>
+                        <td  class="tablenom2" style="padding: 10px;"><?= $range["nom"] ?></td>
+                        <td class="tablenom2" style="padding: 10px;"><?= $range["prenom"] ?></td>
+                        <td class="tablenom2" style="padding: 10px;"><?= $range["mail"] ?></td>
+                        <td class="tablenom2" style="padding: 10px;"><?= $range["mdp"] ?></td>
+             
+                    </tr>               
                 <?php endforeach ?>
             <tfoot>
+                
+                <div class="btn">
                 <tr>
-                    <td><a class="btn btn-success" href="..\View\adminvoyage.php" role="button">Ajout d'une ville</a></td>
-                    <td><a class="btn btn-success" href="..\View\actionville.php" role="button">Ajout d'un circuit</a></td>
-                </tr>
+                
+                    <td><a class="btn btn-success"  href="..\View\adminvoyage.php" role="button">Ajout d'une ville</a></td>
+                    <td><a class="btn btn-success"  href="..\View\actionville.php" role="button">Ajout d'un circuit</a></td>
+                </div>
+               
+                
+                </tr>           
             </tfoot>
             </tbody>
         </table>
