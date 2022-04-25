@@ -20,15 +20,15 @@ require_once('../controller/traitement.php');
 </head>
 
 <body>
-<?php
+    <?php
     if (isset($_GET['voyage'])) {
-        if ($_GET['voyage'] == 1) :?>
+        if ($_GET['voyage'] == 1) : ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong>Merci de votre confience. Nous esperons que vous serez satisfait</strong> 
+                <strong>Merci de votre confience. Nous esperons que vous serez satisfait</strong>
             </div>
-        <?php endif; 
+    <?php endif;
     } ?>
-<?php
+    <?php
     if (isset($_GET['success'])) :
 
         if ($_GET['success'] == true) : ?>
@@ -38,14 +38,14 @@ require_once('../controller/traitement.php');
             </div>
         <?php endif ?>
     <?php endif ?>
-<?php
+    <?php
     if (isset($_GET['deconnexion'])) {
         if ($_GET['deconnexion'] == true) :
-            session_unset();?>
+            session_unset(); ?>
             <div class="alert alert-success" role="alert" style="margin: 0%;">
-                <strong>Vous vous etez bien deconnecté</strong> 
+                <strong>Vous vous etez bien deconnecté</strong>
             </div>
-        <?php endif; 
+    <?php endif;
     } ?>
     <header class="bg-primary border-bottom border-2 border-dark">
         <div class="titre">
@@ -56,14 +56,21 @@ require_once('../controller/traitement.php');
         </div>
         <nav>
             <ul class="navigation">
-                <li class="onglet"><a href="..." class="lien">Vol</a></li>
-                <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
+            <?php if (isset($_SESSION['id'])) : ?>
+                <?php if ($_SESSION['is_admin'] == 1) : ?>
+                    <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php else : ?>
+                    <li class="onglet"><a href="..." class="lien"></a></li>
+                    <?php endif ?>
+            <?php else : ?>
+                    <li class="onglet"><a href="..." class="lien"></a></li>
+            <?php endif ?>
+
+            <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
 
                 <?php if (isset($_SESSION['id'])) : ?>
 
-                    <?php if ($_SESSION['is_admin'] == 1) : ?>
-                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
-                    <?php elseif ($_SESSION !== "") : ?>
+                    <?php if (!empty($_SESSION)) : ?>
                         <li class="onglet"><a href="profil.php" class="lien">Mon compte</a></li>
                     <?php endif ?>
                 <?php else : ?>
@@ -84,7 +91,7 @@ require_once('../controller/traitement.php');
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Japon</h1>
                     <h4>Un pays à l'accueil chaleureux et à la gastronomie exquise avec des paysages somptueux et une architecture enchanteresse. </h4>
-                    <a href="voyage.php?id=<?= 1 ?>" role="button">
+                    <a href="voyage.php?id=1" role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>
@@ -98,7 +105,7 @@ require_once('../controller/traitement.php');
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Grèce</h1>
                     <h4>La Grèce est sans aucun doute l’un des plus beaux pays du monde : ruines, histoire, superbes paysages, la mer, le ciel bleu, le soleil. </h4>
-                    <a href="voyage.php?id=<?= 2 ?> " role="button">
+                    <a href="voyage.php?id=2 " role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>
@@ -112,7 +119,7 @@ require_once('../controller/traitement.php');
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Canada</h1>
                     <h4>Grands espaces, nature omniprésente, faune exceptionnelle… Si vous voulez vous ressourcer dans les bras de Dame Nature, vous êtes au bon endroit.</h4>
-                    <a href="voyage.php?id=<?= 3 ?> " role="button">
+                    <a href="voyage.php?id=3 " role="button">
                         <div class="container">
                             <button type="button" class="button">
                                 <span>Voyager!</span>

@@ -13,7 +13,8 @@ function infoVoyage($id)
                     WHERE `deplacement`.`id_ville_depart` = `ville`.`id`
                     AND `deplacement`.`id` = `circuit_deplacement`.`id_deplacement`
                     AND circuit.id = circuit_deplacement.id_circuit
-                    AND `circuit_deplacement`.`id_circuit` = ? ";
+                    AND `circuit_deplacement`.`id_circuit` = ? 
+                    ORDER BY `deplacement`.`id` ASC";
     $resultVoyage = $connexion->prepare($requestVoyage);
     $resultVoyage->bind_param("i", $id);
     $resultVoyage->execute();

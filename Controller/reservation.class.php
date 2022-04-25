@@ -19,14 +19,13 @@ class reservation
 
         $this->np = $np - 1;
 
-        // $this->maj($idcircuit, $np);
 
     }
     public function add($idcircuit, $id)
     {
 
         global $connexion;
-
+        
         $requete3 = "INSERT INTO `utilisateur_circuit`(`date_reservation`,`id_utilisateur`,`id_circuit`) 
         VALUES (NOW(), ?, ?)";
         $result3 = $connexion->prepare($requete3);

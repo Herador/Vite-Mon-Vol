@@ -1,14 +1,14 @@
-<?php 
-require_once ('C:\wamp64\www\Vite-Mon-Vol\Controller\ajoutdeplacement.class.php');
+<?php
+require_once('C:\wamp64\www\Vite-Mon-Vol\Controller\ajoutdeplacement.class.php');
 
 
-$requete2 = new ajoutdeplacement (htmlspecialchars($_POST['planning_jour']),htmlspecialchars($_POST['heure_depart']), htmlspecialchars($_POST['heure_arrivee']),htmlspecialchars($_POST['ville_depart']), htmlspecialchars($_POST['ville_arrivee']));
-
-
+$requete2 = new ajoutdeplacement(htmlspecialchars($_POST['planning_jour']), htmlspecialchars($_POST['heure_depart']), htmlspecialchars($_POST['heure_arrivee']), htmlspecialchars($_POST['ville_depart']), htmlspecialchars($_POST['ville_arrivee']));
+$requete2->insert();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,9 +21,14 @@ $requete2 = new ajoutdeplacement (htmlspecialchars($_POST['planning_jour']),html
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>Nouveau déplacement</title>
 </head>
-<body>
-<a href="admin.php" role="button" class="btn btn-danger">fin du circuit</a>
-<a href="actioncircuit.php" role="button" class="btn btn-success">ajout d'un déplacement</a>
-</body>
-</html>
 
+<body>
+    <table>
+        <thead>
+        <td><a href="admin.php" role="button" class="btn btn-danger" style="margin-left: 100px;">fin du circuit</a></td></thead>
+        <tbody>
+        <td><a href="actioncircuit.php" role="button" class="btn btn-success">ajout d'un déplacement</a></td></tbody>
+    </table>
+</body>
+
+</html>

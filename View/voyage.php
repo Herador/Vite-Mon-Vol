@@ -44,14 +44,21 @@ $nomvoyage->fetch();
         </div>
         <nav>
             <ul class="navigation">
-                <li class="onglet"><a href="..." class="lien">Vol</a></li>
-                <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
+            <?php if (isset($_SESSION['id'])) : ?>
+                <?php if ($_SESSION['is_admin'] == 1) : ?>
+                    <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php else : ?>
+                    <li class="onglet"><a href="..." class="lien"></a></li>
+                    <?php endif ?>
+            <?php else : ?>
+                    <li class="onglet"><a href="..." class="lien"></a></li>
+            <?php endif ?>
+
+            <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
 
                 <?php if (isset($_SESSION['id'])) : ?>
 
-                    <?php if ($_SESSION['is_admin'] == 1) : ?>
-                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
-                    <?php elseif ($_SESSION !== "") : ?>
+                    <?php if (!empty($_SESSION)) : ?>
                         <li class="onglet"><a href="profil.php" class="lien">Mon compte</a></li>
                     <?php endif ?>
                 <?php else : ?>

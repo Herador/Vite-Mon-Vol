@@ -35,14 +35,21 @@
         </div>
         <nav>
             <ul class="navigation">
-                <li class="onglet"><a href="..." class="lien">Vol</a></li>
-                <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
+            <?php if (isset($_SESSION['id'])) : ?>
+                <?php if ($_SESSION['is_admin'] == 1) : ?>
+                    <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
+                    <?php else : ?>
+                    <li class="onglet"><a href="..." class="lien"></a></li>
+                    <?php endif ?>
+            <?php else : ?>
+                    <li class="onglet"><a href="..." class="lien"></a></li>
+            <?php endif ?>
+
+            <li class="onglet"><a href="liste circuit.php" class="lien">Circuit</a></li>
 
                 <?php if (isset($_SESSION['id'])) : ?>
 
-                    <?php if ($_SESSION['is_admin'] == 1) : ?>
-                        <li class="onglet"><a href="admin.php" class="lien">Gestion du site</a></li>
-                    <?php elseif ($_SESSION !== "") : ?>
+                    <?php if ($_SESSION !== "") : ?>
                         <li class="onglet"><a href="profil.php" class="lien">Mon compte</a></li>
                     <?php endif ?>
                 <?php else : ?>
@@ -92,11 +99,11 @@
                     <td><a class="btn btn-success"  href="..\View\actionville.php" role="button">Ajout d'un circuit</a></td>
                 </div>
                
-                
                 </tr>           
             </tfoot>
             </tbody>
         </table>
+        <a class="btn btn-danger" href="index.php?deconnexion=true" role="button">Deconnexion</a>
     </div>
 </body>
 
